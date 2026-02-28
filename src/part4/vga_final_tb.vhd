@@ -13,26 +13,25 @@ end vga_tb;
 
 architecture TB of vga_tb is
 
-    component top_level is
+    component vga is
         port (
-            clk              : in std_logic;
-            switch           : in std_logic_vector(9 downto 0);
-            button           : in std_logic_vector(1 downto 0);
+            clk              : in  std_logic;
+            rst              : in  std_logic;
+            sw               : in  std_logic_vector(2 downto 0);
             red, green, blue : out std_logic_vector(3 downto 0);
             h_sync, v_sync   : out std_logic
         );
-    end component;
+end component;
 
     component VGA_sync_gen is
         port (
-            clk            : in std_logic;
-            rst            : in std_logic;
-            h_sync, v_sync : out std_logic;
-            video_on       : out std_logic;
-
-            -- Can be either std_logic_vector or unsigned
-            -- depending on your implementation
-            h_count, v_count : out unsigned(9 downto 0));
+        clk        : in  std_logic;
+        rst        : in  std_logic;
+        Hcount     : out std_logic_vector(9 downto 0);
+        Vcount     : out std_logic_vector(9 downto 0);
+        Horiz_Sync : out std_logic;
+        Vert_Sync  : out std_logic;
+        Video_On   : out std_logic);
 
     end component;
 
@@ -41,11 +40,12 @@ architecture TB of vga_tb is
     signal clkEn            : std_logic := '1';
     signal clk              : std_logic := '0';
     signal pixel_clock      : std_logic := '0';
-    signal switch           : std_logic_vector(9 downto 0);
-    signal button           : std_logic_vector(1 downto 0);
+    -- signal switch           : std_logic_vector(9 downto 0);
+    -- signal button           : std_logic_vector(1 downto 0);
     signal red, green, blue : std_logic_vector(3 downto 0);
     signal rst, video_On    : std_logic;
     signal h_sync, v_sync   : std_logic;
+    signal sw : std_logic_vector(2 downto 0) := (others => '0');
 
 begin -- TB
 
@@ -53,25 +53,26 @@ begin -- TB
     clk         <= not clk and clkEn after 10 ns;
     pixel_clock <= not pixel_clock and clkEn after 20 ns;
 
-    TOP_LVL : top_level port map(
+    TOP_LVL : vga port map(
         clk    => clk,
-        switch => switch,
-        button => button,
+        rst    => rst,
+        sw     => sw,
         red    => red,
         green  => green,
         blue   => blue,
         h_sync => h_sync,
-        v_sync => v_sync);
+        v_sync => v_sync
+    );
 
     -- Current implementation assumes a divider already inside sync_gen
     Sync_Gen : VGA_sync_gen port map(
         clk      => clk,
         rst      => rst,
-        h_sync   => open,
-        v_sync   => open,
-        video_On => video_On,
-        h_count  => open,
-        v_count  => open);
+        Horiz_Sync   => open,
+        Vert_Sync   => open,
+        Video_On => Video_On,
+        Hcount  => open,
+        Vcount  => open);
 
     process
         variable ideal  : time;
@@ -91,11 +92,11 @@ begin -- TB
         --------------------------------------------------------------------------------
         -- (not) button 0 connected to reset in this implementation
         rst    <= '1';
-        button <= (others => '0');
-        switch <= (others => '0');
+        -- button <= (others => '0');
+        -- switch <= (others => '0');
         wait for 20 ns;
         rst    <= '0';
-        button <= (others => '1');
+        -- button <= (others => '1');
 
         ------------------------------
                 -- MEASURE A --
@@ -287,30 +288,37 @@ begin -- TB
         -- If you have different architecture feel free to change
         -- the tb to match you're architecture
 
+        -- center
+        wait for 20 ns;
+        sw <= "000";
+
+        wait until falling_edge(v_sync) for (100 * TIMEOUT);
+        wait until rising_edge(v_sync)  for (10  * ideal);
+
         -- top left
         wait for 20 ns;
-        switch <= "0000000001";
+        sw <= "001";
 
         wait until falling_edge(v_sync) for (100 * TIMEOUT);
         wait until rising_edge(v_sync)  for (10  * ideal);
 
         -- top right
         wait for 20 ns;
-        switch <= "0000000010";
+        sw <= "010";
 
         wait until falling_edge(v_sync) for (100 * TIMEOUT);
         wait until rising_edge(v_sync)  for (10  * ideal);
 
         -- bottom left
         wait for 20 ns;
-        switch <= "0000000011";
+        sw <= "011";
 
         wait until falling_edge(v_sync) for (100 * TIMEOUT);
         wait until rising_edge(v_sync)  for (10  * ideal);
 
         -- bottom right
         wait for 20 ns;
-        switch <= "0000000100";
+        sw <= "100";
 
         wait until falling_edge(v_sync) for (100 * TIMEOUT);
 
