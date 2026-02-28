@@ -18,4 +18,17 @@ end row_addr_gen;
 
 architecture bhv of row_addr_gen is
 
+    --define signals
+begin
+
+--seq process
+process(clk, rst)
+    if(rst = '1') then
+        
+    elsif(rising_edge(clk)) then
+
+    end if
+
+
+
 end bhv;
