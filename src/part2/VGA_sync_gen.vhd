@@ -1,7 +1,8 @@
--- Name: 
--- Section #:
--- PI Name: 
--- Description:
+-- Name: Arion Stern
+-- Section #: 10972
+-- PI Name: Newman Waters
+-- Description: Vga sync generator which generates HSYNC, VSYNC, Video_on, and both the Hcount and vcount which are fed into the address
+-- generators. Uses the pixelclk from the clock divider and outputs that for the ROM to use too. 
 
 library ieee;
 use ieee.std_logic_1164.all;

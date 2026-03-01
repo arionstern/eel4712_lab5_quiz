@@ -1,3 +1,8 @@
+-- Name: Arion Stern
+-- Section #: 10972
+-- PI Name: Newman Waters
+-- Description: test bench for the sync gen entity to verify the timing of Horiz_Sync, Vert_Sync, and Video_ON
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;

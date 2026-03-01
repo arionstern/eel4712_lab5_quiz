@@ -1,7 +1,8 @@
--- Name: 
--- Section #:
--- PI Name: 
--- Description:
+-- Name: Arion Stern
+-- Section #: 10972
+-- PI Name: Newman Waters
+-- Description: Top level entity of vga interface. Outputs Hsync, Vsync from sync gen. Outputs rgb values from enable logic and ROM.
+-- instantiates ROM sync gen and col/row addr generators. 
 
 library ieee;
 use ieee.std_logic_1164.all;

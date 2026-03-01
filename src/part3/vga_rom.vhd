@@ -33,6 +33,10 @@
 --refer to the applicable agreement for further details, at
 --https://fpgasoftware.intel.com/eula.
 
+-- Name: Arion Stern
+-- Section #: 10972
+-- PI Name: Newman Waters
+-- Description: Vga_rom generated using quartus tools and brom.mif
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.all;

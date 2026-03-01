@@ -1,7 +1,8 @@
--- Name: 
--- Section #:
--- PI Name: 
--- Description:
+-- Name: Arion Stern
+-- Section #: 10972
+-- PI Name: Newman Waters
+-- Description: Generates a row address to be used in the ROM address logic. Also outputs a row enable to be used in ROM enable logic.
+-- Row address of img is determined by the relative position using the buttons and Vcount. 
 
 library ieee;
 use ieee.std_logic_1164.all;

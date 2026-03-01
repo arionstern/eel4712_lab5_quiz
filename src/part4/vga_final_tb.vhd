@@ -1,3 +1,8 @@
+-- Name: Arion Stern
+-- Section #: 10972
+-- PI Name: Newman Waters
+-- Description: Test bench for vga entity. Contains time boundaries to meet with room for some error. 
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
