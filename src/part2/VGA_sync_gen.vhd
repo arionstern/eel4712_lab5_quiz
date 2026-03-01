@@ -16,7 +16,8 @@ entity VGA_sync_gen is
         Vcount     : out std_logic_vector(9 downto 0);
         Horiz_Sync : out std_logic;
         Vert_Sync  : out std_logic;
-        Video_On   : out std_logic
+        Video_On   : out std_logic;
+        pixel_clk_out : out std_logic
     );
 end VGA_sync_gen;
 
@@ -79,7 +80,7 @@ begin
 Hcount <= std_logic_vector(hcount_reg);
 Vcount <= std_logic_vector(vcount_reg);
 
-
+pixel_clk_out <= pixel_clk;
 
 
 

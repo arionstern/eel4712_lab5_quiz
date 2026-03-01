@@ -31,6 +31,7 @@ end component;
         Vcount     : out std_logic_vector(9 downto 0);
         Horiz_Sync : out std_logic;
         Vert_Sync  : out std_logic;
+        pixel_clk_out : out std_logic;
         Video_On   : out std_logic);
 
     end component;
@@ -72,6 +73,7 @@ begin -- TB
         Vert_Sync   => open,
         Video_On => Video_On,
         Hcount  => open,
+        pixel_clk_out => open,
         Vcount  => open);
 
     process

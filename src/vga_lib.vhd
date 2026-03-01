@@ -37,24 +37,24 @@ package VGA_LIB is
   constant TOP_LEFT_Y_START : integer := 0;
   constant TOP_LEFT_Y_END   : integer := 127;
 
-  constant TOP_RIGHT_X_START : integer := 511;
+  constant TOP_RIGHT_X_START : integer := 512;
   constant TOP_RIGHT_X_END   : integer := 639;
   constant TOP_RIGHT_Y_START : integer := 0;
   constant TOP_RIGHT_Y_END   : integer := 127;
 
-  constant BOTTOM_RIGHT_X_START : integer := 511;
+  constant BOTTOM_RIGHT_X_START : integer := 512;
   constant BOTTOM_RIGHT_X_END   : integer := 639;
-  constant BOTTOM_RIGHT_Y_START : integer := 351;
+  constant BOTTOM_RIGHT_Y_START : integer := 352;
   constant BOTTOM_RIGHT_Y_END   : integer := 479;
 
   constant BOTTOM_LEFT_X_START : integer := 0;
   constant BOTTOM_LEFT_X_END   : integer := 127;
-  constant BOTTOM_LEFT_Y_START : integer := 351;
+  constant BOTTOM_LEFT_Y_START : integer := 352;
   constant BOTTOM_LEFT_Y_END   : integer := 479;
 
-  constant CENTERED_X_START : integer := 255;
+  constant CENTERED_X_START : integer := 256;
   constant CENTERED_X_END   : integer := 383;
-  constant CENTERED_Y_START : integer := 175;
+  constant CENTERED_Y_START : integer := 176;
   constant CENTERED_Y_END   : integer := 303;
 
   -----------------------------------------------------------------------------
