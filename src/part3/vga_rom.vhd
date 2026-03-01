@@ -68,6 +68,7 @@ BEGIN
 		clock_enable_input_a => "BYPASS",
 		clock_enable_output_a => "BYPASS",
 		init_file => "brom.mif",
+		-- init_file => "C:/Users/arist/uf_class_projs/4712projects/lab5/lab-5-arionstern/src/part3/brom.mif",
 		intended_device_family => "MAX 10",
 		lpm_hint => "ENABLE_RUNTIME_MOD=NO",
 		lpm_type => "altsyncram",
