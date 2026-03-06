@@ -4,6 +4,8 @@
 -- Description: Top level entity of vga interface. Outputs Hsync, Vsync from sync gen. Outputs rgb values from enable logic and ROM.
 -- instantiates ROM sync gen and col/row addr generators. 
 
+--quiz
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -23,8 +25,10 @@ architecture str of vga is
 signal Horiz_Sync, Vert_Sync, Video_On, Col_En, Row_En, wren : std_logic;
 signal Hcount, Vcount       : std_logic_vector(9 downto 0);
 -- signal pos    :      std_logic_vector(2 downto 0);
-signal Row_Addr, Col_Addr      : std_logic_vector(5 downto 0);
-signal rom_address, data, rom_q : STD_LOGIC_VECTOR (11 DOWNTO 0);
+signal Row_Addr, Col_Addr      : std_logic_vector(6 downto 0);
+signal rom_address, data : STD_LOGIC_VECTOR (13 DOWNTO 0);
+
+signal rom_q : STD_LOGIC_VECTOR (11 DOWNTO 0);
 
 signal pixel_clk : std_logic;
 
@@ -66,12 +70,12 @@ begin
 
        
        --ROM
-       U_ROM  : entity work.vga_rom
+       U_ROM  : entity work.vga_rom_quiz
         port map(
               address => rom_address,
               clock => pixel_clk,
-              data => (others => '0'), --read only 
-              wren => '0', --read only
+              -- data => (others => '0'), --read only 
+              -- wren => '0', --read only
               q =>  rom_q    
               );
 

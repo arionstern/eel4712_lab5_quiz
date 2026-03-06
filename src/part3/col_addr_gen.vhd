@@ -13,7 +13,7 @@ entity col_addr_gen is
     port (
         Hcount   : in  std_logic_vector(9 downto 0);
         pos      : in  std_logic_vector(2 downto 0);  -- 0..4
-        Col_Addr : out std_logic_vector(5 downto 0);
+        Col_Addr : out std_logic_vector(6 downto 0);
         Col_En   : out std_logic
     );
 end col_addr_gen;
@@ -26,7 +26,7 @@ begin
         variable x0     : integer;
         variable x1     : integer;
         variable rel_x    : unsigned(9 downto 0);
-        variable col_unsigned : unsigned(5 downto 0);
+        variable col_unsigned : unsigned(6 downto 0);
     begin
         h_unsigned := unsigned(Hcount);
 
@@ -67,7 +67,9 @@ begin
                 rel_x := h_unsigned - to_unsigned(x0, 10);
 
                 -- each block is 2 pixels wide => divide by 2
-                col_unsigned := resize(shift_right(rel_x, 1), 6);
+                -- col_unsigned := resize(shift_right(rel_x, 1), 6);
+                col_unsigned := resize(rel_x, 7);
+
                 Col_Addr <= std_logic_vector(col_unsigned);
             end if;
         end if;

@@ -13,7 +13,7 @@ entity row_addr_gen is
     port (
         Vcount   : in  std_logic_vector(9 downto 0);
         pos      : in  std_logic_vector(2 downto 0);  -- 0..4
-        Row_Addr : out std_logic_vector(5 downto 0);
+        Row_Addr : out std_logic_vector(6 downto 0);
         Row_En   : out std_logic
     );
 end row_addr_gen;
@@ -27,7 +27,7 @@ begin
         variable y0     : integer;
         variable y1     : integer;
         variable rel_y    : unsigned(9 downto 0);
-        variable row_unsigned : unsigned(5 downto 0);
+        variable row_unsigned : unsigned(6 downto 0);
     begin
         v_unsigned := unsigned(Vcount);
 
@@ -68,7 +68,8 @@ begin
                 rel_y := v_unsigned - to_unsigned(y0, 10);
 
                 -- each block is 2 pixels tall => divide by 2
-                row_unsigned := resize(shift_right(rel_y, 1), 6);
+                -- row_unsigned := resize(shift_right(rel_y, 1), 6);
+                row_unsigned := resize(rel_y, 7);
                 Row_Addr <= std_logic_vector(row_unsigned);
             end if;
         end if;
