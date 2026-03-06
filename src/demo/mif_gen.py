@@ -48,8 +48,8 @@ def miffilegen(infile, outfname, numrows, numcols):
 if __name__ == '__main__':
     # You can call the function like this:
     miffilegen(
-        infile='input.png',
+        infile='src/demo/eric_s.jpg',
         outfname='output.mif',
-        numrows=64,
-        numcols=64
-    )
+        numrows=128,
+        numcols=128
+    ) 
